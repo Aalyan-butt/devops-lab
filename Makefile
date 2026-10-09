@@ -24,7 +24,8 @@ check:
 		exit 1; \
 	fi
 	@echo "CHECK PASSED: $(words $(SOURCES)) source file(s) found"
-
+count: build ## report how many words were built
+	@wc -w $(OUTPUTS) | tail -1
 build: $(OUTPUTS)
 
 test: build
