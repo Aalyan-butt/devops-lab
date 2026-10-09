@@ -19,12 +19,14 @@ check:
 		echo "ERROR: source directory $(SRC_DIR) not found"; \
 		exit 1; \
 	fi
+
 	@if [ -z "$(SOURCES)" ]; then \
 		echo "ERROR: no .txt files found in $(SRC_DIR)"; \
 		exit 1; \
 	fi
 	@echo "CHECK PASSED: $(words $(SOURCES)) source file(s) found"
-
+count: build ## count the source files
+	@ls -1 $(SRC_DIR)/*.txt | wc -l
 build: $(OUTPUTS)
 
 test: build
@@ -39,5 +41,3 @@ clean:
 
 ci: clean check test
 
-count: build ## count the source files
-	@ls -1 $(SRC_DIR)/*.txt | wc -l
