@@ -25,8 +25,9 @@ check:
 		exit 1; \
 	fi
 	@echo "CHECK PASSED: $(words $(SOURCES)) source file(s) found"
-count: build ## count the source files
+count: build ## report source files and built words
 	@ls -1 $(SRC_DIR)/*.txt | wc -l
+	@wc -w $(OUTPUTS) | tail -1
 build: $(OUTPUTS)
 
 test: build
